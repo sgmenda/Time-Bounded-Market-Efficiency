@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+% margins
+\usepackage[margin=1in]{geometry}
+
+% fonts
+\usepackage{fourier}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{amssymb}
+
+% color
+\usepackage{xcolor}
+
+% hyperlinks
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% math
+\usepackage{amsmath, mathtools, amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\begin{document}
+
+\title{\bfseries Time-Bounded Market Efficiency}
+\author{%
+    Sanketh\thanks{%
+        \url{https://c1own.com}%
+    }
+}
+\date{DRAFT:\;\today}
+\maketitle
+
+\begin{abstract}
+    We study market efficiency relative to time-bounded agents.  Following
+    Hasanhodzic et al.~\cite{HasanhodzicLV11}, we define a market to be
+    \emph{$T$-efficient} if no strategy using at most $T$ time can have expected
+    return in excess of equilibrium return. We show that, for polynomial $T$,
+    $T$-efficient markets can have market spikes assuming that there exist
+    secure pseudorandom functions. Further, we show that a strategy $A$ with
+    access with asymptotically more time than strategy $B$ can outperform
+    strategy $B$. Our results can be seen as evidence that volatile markets do
+    not rule out market efficiency.
+\end{abstract}
+
+\section{Introduction}
+
+Informally speaking, a market is \emph{efficient} if it reflects all available
+information. One way to formalize this is using the \emph{random walk model}
+which posits that successive price changes are independent and identically
+distributed; i.e., prices follow a random walk. See Fama~\cite{Fama70} for a
+survey of theoretical and empirical work on the efficient market hypothesis.
+
+In this paper, we are going to use the computational definition of market
+efficiency due Hasanhodzic et al.~\cite{HasanhodzicLV11}.
+
+\begin{definition}[\cite{HasanhodzicLV11}]
+    A market is \emph{efficient} with respect to resources $S$ if no strategy
+    using resources $S$ can generate a substantial profit.
+\end{definition}
+
+But, in this paper, we are going to fix the resources under consideration to be time.
+
+\begin{definition}
+    A market is \emph{$T$-efficient} if no strategy using at most $T$ time can
+    have expected return in excess of equilibrium return. 
+\end{definition}
+
+\bibliographystyle{alphaurl}
+\bibliography{market.bib}
+
+\newpage
+\appendix
+\section{My Email}
+
+This is an email I wrote one of the authors of \cite{HasanhodzicLV11}. This
+paper is an expansion of this thought.
+
+\begin{quote}
+    Perhaps this is obvious from your paper, but one can shove hard problems
+    into predicting the sign of next return. The native “let’s put 3SAT into it”
+    doesn't seem to work but one can instead use a randomly seeded PRF and let
+    the return of the ith day be the output of the PRF on input i.  More
+    precisely, you pick a subexponentially secure PRF and run it only
+    polynomially many times (assume that the stock dies after polynomially many
+    days.) You also assume, as usual in TCS, that the agent is polynomial-time
+    bounded.  Your main results also seem to hold in this model:
+    \begin{enumerate}
+        \item spikes are possible, and 
+        \item an agent with exponential-time can break the PRF and make a lot of
+            money. (Also, by messing with the PRF you can get an analog of your
+            Claim 2.5 and a more fine-grained version of (2).) (The
+            “feeding-off” stuff may also be possible in this model, but I
+            haven’t thought too much about it.) 
+    \end{enumerate}
+    (Technical aside: as usual, the PRF is public knowledge but the seed is kept
+    private.) Of course, all these results would be conditioned on complexity
+    theoretic or cryptographic assumptions. 
+\end{quote}
+
+\end{document}
