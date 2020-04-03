@@ -1,0 +1,6 @@
+- name: Compile LaTeX using tectonic
+  uses: vinay0410/tectonic-action@v1.1.2
+  with:
+    # Path of Tex File
+    tex_path: main.tex
+    push: no
